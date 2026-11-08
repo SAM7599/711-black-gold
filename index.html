@@ -37,7 +37,7 @@ nav ul a:hover{color:var(--gold)}
 .hero{overflow:hidden}
 .vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
 .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
-.vbg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100%;min-width:177.78vh;transform:translate(-50%,-50%);border:0;pointer-events:none}
+.vbg iframe{position:absolute;top:-160px;left:50%;width:max(100vw,230vh);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
 .hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
   background:repeating-linear-gradient(-45deg,var(--gold) 0 18px,var(--black) 18px 36px)}
 .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:4px 14px;font-size:12px;letter-spacing:.3em;margin-bottom:22px}
@@ -107,7 +107,7 @@ img{-webkit-user-drag:none;user-drag:none}
 </nav>
 
 <header class="hero" id="top">
-  <div class="vbg"><iframe src="https://www.youtube.com/embed/3nQ-b04IFIA?autoplay=1&mute=1&loop=1&playlist=3nQ-b04IFIA&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3" title="클랜 소개 영상" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true"></iframe></div>
+  <div class="vbg"><iframe src="https://www.youtube.com/embed/3nQ-b04IFIA?autoplay=1&mute=1&loop=1&playlist=3nQ-b04IFIA&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3&cc_load_policy=0&fs=0" title="클랜 소개 영상" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true"></iframe></div>
   <div class="wrap">
     <img src="logo.png" alt="711 Black Gold 클랜 로고" class="herologo">
     <div class="tag">HELLDIVERS 2 · 성인 클랜</div>

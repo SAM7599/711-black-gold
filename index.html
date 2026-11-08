@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>711 BLACK GOLD | 헬다이버즈 2 클랜</title>
@@ -33,10 +34,14 @@ nav ul a:hover{color:var(--gold)}
 /* hero */
 .hero{min-height:88vh;display:flex;align-items:center;text-align:center;position:relative;
   background:radial-gradient(ellipse at 50% 30%,rgba(245,184,0,.16),transparent 60%),var(--black)}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
+.hero{overflow:hidden}
+.vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
+.vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
+.vbg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100%;min-width:177.78vh;transform:translate(-50%,-50%);border:0;pointer-events:none}
+.hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
   background:repeating-linear-gradient(-45deg,var(--gold) 0 18px,var(--black) 18px 36px)}
 .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:4px 14px;font-size:12px;letter-spacing:.3em;margin-bottom:22px}
-.herologo{width:min(380px,70vw);filter:drop-shadow(0 0 40px rgba(245,184,0,.35));margin-bottom:10px}
+.herologo{display:block;margin:0 auto 10px;width:min(380px,70vw);filter:drop-shadow(0 0 40px rgba(245,184,0,.35));margin-bottom:10px}
 .sr{position:absolute;left:-9999px}
 .hero h1{font-size:clamp(44px,11vw,104px);font-weight:900;line-height:1.05;letter-spacing:.04em}
 .hero h1 span{color:var(--gold);display:block}
@@ -92,6 +97,8 @@ img{-webkit-user-drag:none;user-drag:none}
     <a href="#top" class="logo"><img src="logo.png" alt="" style="height:38px;vertical-align:middle;margin-right:8px">711 BLACK GOLD</a>
     <ul>
       <li><a href="#about">소개</a></li>
+      <li><a href="#activity">활동</a></li>
+      <li><a href="#style">성향</a></li>
       <li><a href="#ranks">직급</a></li>
       <li><a href="#join">가입</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -100,11 +107,12 @@ img{-webkit-user-drag:none;user-drag:none}
 </nav>
 
 <header class="hero" id="top">
+  <div class="vbg"><iframe src="https://www.youtube.com/embed/S9STizATKjE?autoplay=1&mute=1&loop=1&playlist=S9STizATKjE&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3" title="클랜 소개 영상" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true"></iframe></div>
   <div class="wrap">
     <img src="logo.png" alt="711 Black Gold 클랜 로고" class="herologo">
-    <div class="tag">HELLDIVERS 2 · ADULT CLAN</div>
+    <div class="tag">HELLDIVERS 2 · 성인 클랜</div>
     <h1 class="sr">711 BLACK GOLD</h1>
-    <p class="sub">벌레는 쓸어버리고, 검은 황금은 뽑아낸다.<br>테르미니드 소탕과 E-710 · E-711 석유 추출 전문 클랜.</p>
+    <p class="sub">벌레는 쓸어버리고, 검은 황금은 뽑아낸다.<br>테르미니드 소탕과 E-710 · E-711 석유 추출 전문 클랜.<br>오래 함께할 헬다이버를 모집합니다.</p>
     <div class="btns">
       <a class="btn fill" data-discord href="#join">디스코드 합류하기</a>
       <a class="btn" href="#about">클랜 알아보기</a>
@@ -115,18 +123,46 @@ img{-webkit-user-drag:none;user-drag:none}
 <section id="about">
   <div class="wrap reveal">
     <h2>우리는 <em>이런 클랜</em>입니다</h2>
-    <p class="lead">성인 다이버들이 모여 편하게, 그리고 확실하게 임무를 완수합니다.</p>
+    <p class="lead">오랫동안 한곳에서 함께할 사람들을 모집합니다. 성인 다이버들이 모여 편하게, 그리고 확실하게 임무를 완수합니다.</p>
     <div class="grid">
       <div class="card"><h3>🪲 테르미니드 전문</h3><p>주력은 테르미니드 전선. 가끔 분위기 전환으로 다른 종족 전선에도 함께 출격합니다.</p></div>
-      <div class="card"><h3>🛢️ E-710 · E-711 석유 추출</h3><p>클랜 이름의 유래인 석유 추출 임무(E-710, E-711). 검은 황금을 지키는 팀플레이가 핵심입니다.</p></div>
+      <div class="card"><h3>🤝 오래 함께할 동료</h3><p>잠깐 들렀다 떠나는 곳이 아니라, 오랫동안 한곳에서 같이할 사람들을 모집합니다.</p></div>
       <div class="card"><h3>🍺 성인 커뮤니티</h3><p>매너 있는 성인들의 모임. 과한 간섭 없이 즐겁게, 하지만 임무에선 진지하게.</p></div>
       <div class="card"><h3>🎖️ 최대 50명</h3><p>정원 최대 50명. 서로 닉네임이 익숙한 아담한 분위기를 지향합니다.</p></div>
     </div>
     <div class="stats">
-      <div class="stat"><b>최대 50명</b><span>클랜 정원</span></div>
+      <div class="stat"><b id="mcount">최대 50명</b><span id="mlabel">클랜 정원</span></div>
       <div class="stat"><b>테르미니드</b><span>주력 전선</span></div>
       <div class="stat"><b>E-710 · 711</b><span>대표 임무</span></div>
       <div class="stat"><b>성인</b><span>전용 클랜</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="activity">
+  <div class="wrap reveal">
+    <h2>주요 <em>활동</em></h2>
+    <p class="lead">슈퍼 지구의 이름으로, 우리는 이런 일을 합니다.</p>
+    <div class="grid">
+      <div class="card"><h3>🗽 민주주의 전파</h3><p>은하 곳곳에 민주주의를 전파합니다.</p></div>
+      <div class="card"><h3>🚀 식민지 행성 해방</h3><p>적에게 점령된 식민지 행성을 해방합니다.</p></div>
+      <div class="card"><h3>⛏️ 자원 확보 및 추출</h3><p>신입 헬다이버를 위한 샘플을 확보하고, 필요한 자원을 추출합니다. E-710, E-711 석유 추출 임무도 함께합니다.</p></div>
+      <div class="card"><h3>🎓 신입 적응 지원</h3><p>신입 헬다이버가 게임에 적응할 수 있도록 도와줍니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="style">
+  <div class="wrap reveal">
+    <h2>클랜 <em>성향</em></h2>
+    <p class="lead">이기는 것보다 같이 즐기는 것을 먼저 생각합니다.</p>
+    <div class="grid">
+      <div class="card"><h3>🤝 친목과 협동</h3><p>친목과 협동 중심의 분위기입니다.</p></div>
+      <div class="card"><h3>🌱 신입 환영</h3><p>신입 헬다이버를 환영합니다.</p></div>
+      <div class="card"><h3>♾️ 실력·레벨 무관</h3><p>실력과 레벨 제한이 없습니다.</p></div>
+      <div class="card"><h3>👥 다양한 연령대</h3><p>다양한 연령대가 함께 활동합니다.</p></div>
+      <div class="card"><h3>🎮 강요 없는 플레이</h3><p>특정 장비나 플레이 방식을 강요하지 않습니다.</p></div>
+      <div class="card"><h3>⏳ 장기적인 관계</h3><p>오래, 장기적으로 함께할 수 있는 관계를 지향합니다.</p></div>
     </div>
   </div>
 </section>
@@ -160,7 +196,7 @@ img{-webkit-user-drag:none;user-drag:none}
     <h3 style="margin:44px 0 14px;color:var(--gold)">모집 조건</h3>
     <div class="grid">
       <div class="card"><p>✔ 성인 (만 19세 이상)</p></div>
-      <div class="card"><p>✔ 헬다이버즈 2를 꾸준히 플레이하는 분</p></div>
+      <div class="card"><p>✔ 헬다이버즈 2를 꾸준히, 오래 함께할 분</p></div>
       <div class="card"><p>✔ 디스코드 사용 가능</p></div>
       <div class="card"><p>✔ 서로 존중하는 매너</p></div>
     </div>
@@ -171,6 +207,7 @@ img{-webkit-user-drag:none;user-drag:none}
   <div class="wrap reveal">
     <h2>자주 묻는 <em>질문</em></h2>
     <p class="lead">&nbsp;</p>
+    <details><summary>초보나 레벨이 낮아도 되나요?</summary><p>네. 실력과 레벨 제한은 없고 신입 헬다이버를 환영합니다. 특정 장비나 플레이 방식도 강요하지 않아요.</p></details>
     <details><summary>바로 가입할 수 있나요?</summary><p>가입신청서 작성 후 운영진 승인을 받아야 가입할 수 있습니다.</p></details>
     <details><summary>테르미니드만 하나요?</summary><p>주력은 테르미니드지만, 가끔 분위기 전환으로 다른 종족 전선에도 갑니다.</p></details>
     <details><summary>접속 의무가 있나요?</summary><p>정해진 접속 시간은 없습니다. 다만 신규 가입자는 3일 이내 닉네임 변경 신청과, 수습기간 7일 중 1회 이상 활동이 필수입니다.</p></details>
@@ -196,12 +233,31 @@ img{-webkit-user-drag:none;user-drag:none}
 <script>
 /* ▼▼ 여기만 고치면 됩니다 ▼▼ */
 const DISCORD_URL = "https://discord.gg/n3VwvQBV5x";
+var BOT_COUNT = 5;        // 서버에 들어있는 봇 수 (자동 집계에서 뺍니다)
+var GUEST_COUNT = 1;      // 게스트 수 (자동 집계에서 뺍니다)
+var MEMBER_COUNT = 0;     // 봇·게스트 제외 실제 클랜원 수. 0이면 디스코드 자동 집계(봇 포함)를 사용
 /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
 document.querySelectorAll("[data-discord]").forEach(function(a){
   if(DISCORD_URL){ a.href = DISCORD_URL; a.target = "_blank"; a.rel = "noopener"; }
   else { a.textContent = "디스코드 링크 준비중"; }
 });
+
+if(MEMBER_COUNT>0){
+  document.getElementById("mcount").textContent = MEMBER_COUNT + " / 50명";
+  document.getElementById("mlabel").textContent = "현재 클랜원";
+} else (function(){
+  var m = DISCORD_URL.match(/discord\.gg\/([A-Za-z0-9-]+)/);
+  if(!m) return;
+  fetch("https://discord.com/api/v9/invites/"+m[1]+"?with_counts=true")
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(!d || !d.approximate_member_count) return;
+      document.getElementById("mcount").textContent = Math.max(d.approximate_member_count - BOT_COUNT - GUEST_COUNT, 0) + " / 50명";
+      document.getElementById("mlabel").textContent = "현재 클랜원";
+    })
+    .catch(function(){});
+})();
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); } });
 },{threshold:.12});

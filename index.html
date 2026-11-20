@@ -84,6 +84,10 @@ details p{margin-top:10px;color:#c8c5ba;font-size:15px}
 .cta h2{font-size:clamp(28px,6vw,48px)}
 footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--mute);font-size:13px;position:relative;z-index:1}
 @media(min-width:1100px){.wrap{padding:0 48px}.card p,.step p{font-size:16px}.lead{font-size:17px}.ranks li{padding:20px 28px}details{padding:20px 28px}}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.gal figure{border:1px solid var(--line);border-top:3px solid var(--gold);background:var(--panel);overflow:hidden}
+.gal img{display:block;width:100%;height:auto;transition:.4s}
+.gal figure:hover img{transform:scale(1.03)}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s}
 .reveal.show{opacity:1;transform:none}
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -98,6 +102,7 @@ img{-webkit-user-drag:none;user-drag:none}
     <ul>
       <li><a href="#about">소개</a></li>
       <li><a href="#activity">활동</a></li>
+      <li><a href="#gallery">갤러리</a></li>
       <li><a href="#style">성향</a></li>
       <li><a href="#time">시간</a></li>
       <li><a href="#ranks">직급</a></li>
@@ -149,6 +154,17 @@ img{-webkit-user-drag:none;user-drag:none}
       <div class="card"><h3>🚀 식민지 행성 해방</h3><p>적에게 점령된 식민지 행성을 해방합니다.</p></div>
       <div class="card"><h3>⛏️ 자원 확보 및 추출</h3><p>신입 헬다이버를 위한 샘플을 확보하고, 필요한 자원을 추출합니다. E-710, E-711 석유 추출 임무도 함께합니다.</p></div>
       <div class="card"><h3>🎓 신입 적응 지원</h3><p>신입 헬다이버가 게임에 적응할 수 있도록 도와줍니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap reveal">
+    <h2>클랜 <em>활동 모습</em></h2>
+    <p class="lead">클랜원들과 미션을 무사히 완수하고 돌아오는 장면입니다.</p>
+    <div class="gal">
+      <figure><img src="images/return1.jpg" alt="미션을 완수하고 귀환하는 클랜원들" loading="lazy"></figure>
+      <figure><img src="images/return2.jpg" alt="임무 완수 후 함께 귀환하는 클랜원들" loading="lazy"></figure>
     </div>
   </div>
 </section>

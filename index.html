@@ -37,7 +37,7 @@ nav ul a:hover{color:var(--gold)}
 .hero{overflow:hidden;padding:64px 0 90px}
 .vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
 .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
-.vbg iframe{opacity:0;transition:opacity 2.5s ease;position:absolute;top:-160px;left:50%;width:max(100vw,230vh);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
+.vbg iframe{opacity:0;transition:opacity 2s ease;position:absolute;left:50%;top:var(--cy,234px);height:calc(200% - 2 * var(--cy,234px) + 280px);aspect-ratio:16/9;width:auto;transform:translate(-50%,-50%);border:0;pointer-events:none}
 .vbg.playing iframe{opacity:1}
 .hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
   background:repeating-linear-gradient(-45deg,var(--gold) 0 18px,var(--black) 18px 36px)}
@@ -349,8 +349,8 @@ document.querySelectorAll(".clip").forEach(function(b){
         onStateChange:function(e){
           if(e.data===1){
             if(!vbg.classList.contains("playing") && !showT){
-              /* 재생이 시작되고 약 5.5초 뒤에 천천히 보여줍니다 (재생 버튼이 비치지 않도록) */
-              showT=setTimeout(function(){ vbg.classList.add("playing"); showT=null; },5500);
+              /* 재생이 시작되고 잠시 뒤 천천히 보여줍니다. 재생 버튼은 로고 뒤에 가려집니다 */
+              showT=setTimeout(function(){ vbg.classList.add("playing"); showT=null; },1500);
             }
           } else if(e.data===0){ e.target.seekTo(0,true); e.target.playVideo(); }
           else if(e.data===2||e.data===5){ clearTimeout(showT); showT=null; vbg.classList.remove("playing"); e.target.playVideo(); }
@@ -456,6 +456,21 @@ function typeSection(sec){
   readTarget(); cur=target; render(cur);
 })();
 
+
+/* 배경 영상 가운데(재생 버튼 위치)가 로고 뒤에 오도록 맞춤 */
+(function(){
+  var hero=document.querySelector(".hero"), logo=document.querySelector(".herologo"), vbg=document.querySelector(".vbg");
+  if(!hero||!logo||!vbg) return;
+  function fit(){
+    var h=hero.getBoundingClientRect(), l=logo.getBoundingClientRect();
+    vbg.style.setProperty("--cy",(l.top+l.height/2-h.top)+"px");
+  }
+  fit();
+  window.addEventListener("resize",fit);
+  window.addEventListener("load",fit);
+  if(logo.complete===false){ logo.addEventListener("load",fit); }
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fit); }
+})();
 /* 로고 클릭 시 맨 위로 */
 document.querySelector("nav .logo").addEventListener("click",function(e){
   e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"});

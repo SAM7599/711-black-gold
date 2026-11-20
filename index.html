@@ -37,7 +37,7 @@ nav ul a:hover{color:var(--gold)}
 .hero{overflow:hidden;min-height:0;padding:76px 0 64px}
 .vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
 .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
-.vbg iframe{position:absolute;top:-160px;left:50%;width:max(100vw,230vh);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
+.vbg iframe{position:absolute;top:-160px;left:50%;width:max(100vw,2100px);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
 .hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
   background:repeating-linear-gradient(-45deg,var(--gold) 0 18px,var(--black) 18px 36px)}
 .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:4px 14px;font-size:12px;letter-spacing:.3em;margin-bottom:22px}
@@ -435,6 +435,22 @@ function typeSection(sec){
 })();
 
 
+/* 배경 영상이 좌우 여백 없이 가득 차도록 크기 조정 */
+(function(){
+  var hero=document.querySelector(".hero"), fr=document.querySelector(".vbg iframe");
+  if(!hero||!fr) return;
+  function fill(){
+    var w=hero.clientWidth, h=hero.clientHeight;
+    var vh=Math.max(h+320, w*9/16);
+    fr.style.height=vh+"px";
+    fr.style.width=(vh*16/9)+"px";
+    fr.style.top=((h-vh)/2)+"px";
+  }
+  fill();
+  window.addEventListener("resize",fill);
+  window.addEventListener("load",fill);
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fill); }
+})();
 /* 로고 클릭 시 맨 위로 */
 document.querySelector("nav .logo").addEventListener("click",function(e){
   e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"});

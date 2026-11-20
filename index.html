@@ -118,6 +118,28 @@ img{-webkit-user-drag:none;user-drag:none}
 @keyframes eq{0%,100%{height:3px}50%{height:14px}}
 #bgm-yt{position:fixed;left:0;bottom:0;width:2px;height:2px;opacity:.01;pointer-events:none;overflow:hidden}
 @media(max-width:640px){#bgm{top:62px;right:8px;padding:6px 10px 6px 8px;max-width:calc(100vw - 16px)}#bgm .ttl{font-size:11px;overflow:hidden;text-overflow:ellipsis}#bgm-vol{width:56px}}
+
+@media(max-width:640px){.logo{font-size:0;text-shadow:none}.logo img{margin-right:0!important}nav ul a{white-space:nowrap}}
+/* 스크롤 스토리 */
+.story{position:relative;height:calc(var(--n,8) * 85vh + 40vh);padding:0}
+.story .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 40%,#17140a,var(--black) 70%)}
+.story .glow2{position:absolute;left:50%;top:50%;width:80vmin;height:80vmin;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(245,184,0,.16),transparent 65%);pointer-events:none}
+.story .scenes{position:relative;width:100%;height:100%}
+.scene{position:absolute;inset:0;padding:0 20px;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none}
+.scene .ln{display:block;will-change:transform,opacity,filter}
+@media(min-width:1100px){.scene{padding:0 48px}}
+.scene .kick{font-family:"Black Ops One","Impact",sans-serif;letter-spacing:.3em;color:var(--gold);font-size:14px;margin-bottom:22px}
+.scene .big{font-size:clamp(30px,5.6vw,72px);font-weight:900;line-height:1.25;margin:0}
+.scene .big .ln{display:block}
+.scene .big em{font-style:normal;color:var(--gold)}
+.scene .sub2{margin-top:26px;font-size:clamp(15px,1.7vw,20px);color:var(--mute);max-width:760px}
+.scene .btn{display:inline-block;align-self:flex-start}
+.sprog{position:absolute;left:0;right:0;bottom:34px;display:flex;align-items:center;gap:16px;padding:0 48px;max-width:1360px;margin:0 auto;font-size:12px;letter-spacing:.2em;color:var(--mute)}
+.sprog i{flex:1;height:2px;background:#2a2a2e;position:relative}
+.sprog b{position:absolute;left:0;top:0;height:100%;width:0;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+@media(max-width:640px){.sprog{padding:0 20px;bottom:22px}}
+#stats{padding:80px 0 30px}
+#stats .stats{margin-top:0}
 </style>
 </head>
 <body>
@@ -131,10 +153,7 @@ img{-webkit-user-drag:none;user-drag:none}
     <a href="#top" class="logo"><img src="logo.png" alt="" style="height:38px;vertical-align:middle;margin-right:8px">711 BLACK GOLD</a>
     <ul>
       <li><a href="#about">소개</a></li>
-      <li><a href="#activity">활동</a></li>
       <li><a href="#clips">클립</a></li>
-      <li><a href="#style">성향</a></li>
-      <li><a href="#time">시간</a></li>
       <li><a href="#ranks">직급</a></li>
       <li><a href="#join">가입</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -157,35 +176,31 @@ img{-webkit-user-drag:none;user-drag:none}
   </div>
 </header>
 
-<section id="about">
-  <div class="wrap reveal">
-    <h2>우리는 <em>이런 클랜</em>입니다</h2>
-    <p class="lead">2024년 11월 24일부터 이어온 클랜, 오랫동안 한곳에서 함께할 사람들을 모집합니다. 성인 다이버들이 모여 편하게, 그리고 확실하게 임무를 완수합니다.</p>
-    <div class="grid">
-      <div class="card"><h3>🪲 테르미니드 전문</h3><p>주력은 테르미니드 전선. 가끔 분위기 전환으로 다른 종족 전선에도 함께 출격합니다.</p></div>
-      <div class="card"><h3>🤝 오래 함께할 동료</h3><p>잠깐 들렀다 떠나는 곳이 아니라, 오랫동안 한곳에서 같이할 사람들을 모집합니다.</p></div>
-      <div class="card"><h3>🍺 성인 커뮤니티</h3><p>매너 있는 성인들의 모임. 과한 간섭 없이 즐겁게, 하지만 임무에선 진지하게.</p></div>
-      <div class="card"><h3>🎖️ 최대 50명</h3><p>정원 최대 50명. 서로 닉네임이 익숙한 아담한 분위기를 지향합니다.</p></div>
+<section id="about" class="story" data-n="8">
+  <div class="stage">
+    <div class="glow2"></div>
+    <div class="scenes wrap">
+    <div class="scene" data-i="0"><span class="ln kick">SINCE 2024.11.24</span><h2 class="big"><span class="ln">2024년 11월 24일부터</span><span class="ln"><em>이어온 클랜</em>입니다.</span></h2><span class="ln sub2">前 철권제재 · 지금은 711 BLACK GOLD</span></div>
+    <div class="scene" data-i="1"><span class="ln kick">주력 전선</span><h2 class="big"><span class="ln">벌레는 <em>쓸어버린다.</em></span><span class="ln">테르미니드 소탕이 주력.</span></h2><span class="ln sub2">가끔은 분위기 전환으로 다른 종족 전선도 함께 출격합니다.</span></div>
+    <div class="scene" data-i="2"><span class="ln kick">주요 활동 01</span><h2 class="big"><span class="ln"><em>민주주의</em>를 전파하고</span><span class="ln">식민지 행성을 <em>해방</em>한다.</span></h2></div>
+    <div class="scene" data-i="3"><span class="ln kick">주요 활동 02</span><h2 class="big"><span class="ln">자원을 확보하고</span><span class="ln"><em>검은 황금</em>을 뽑아낸다.</span></h2><span class="ln sub2">신입 헬다이버를 위한 샘플 확보, E-710 · E-711 석유 추출 임무도 함께합니다.</span></div>
+    <div class="scene" data-i="4"><span class="ln kick">주요 활동 03</span><h2 class="big"><span class="ln">신입 헬다이버가</span><span class="ln">게임에 <em>적응</em>하도록 돕는다.</span></h2><span class="ln sub2">신입 환영 · 실력과 레벨 제한 없음</span></div>
+    <div class="scene" data-i="5"><span class="ln kick">클랜 성향</span><h2 class="big"><span class="ln">친목과 협동, 그리고</span><span class="ln"><em>오래 함께할 관계.</em></span></h2><span class="ln sub2">다양한 연령대 · 특정 장비·플레이 방식 강요 없음 · 최대 50명</span></div>
+    <div class="scene" data-i="6"><span class="ln kick">활동 시간</span><h2 class="big"><span class="ln">평일 밤 <em>9:30 ~ 12:00</em></span></h2><span class="ln sub2">주말은 시간 랜덤 · 함께할 사람이 있을 때도, 없을 때도 있어요.</span></div>
+    <div class="scene" data-i="7"><span class="ln kick">JOIN US</span><h2 class="big"><span class="ln">이제, <em>합류할 차례</em>입니다.</span></h2><a class="btn fill ln" data-discord href="#join" style="margin-top:28px">디스코드 합류하기</a></div>
     </div>
+    <div class="sprog"><span class="cnt">01 / 08</span><i><b></b></i></div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="wrap reveal">
     <div class="stats">
       <div class="stat"><b id="mcount">최대 50명</b><span id="mlabel">클랜 정원</span></div>
       <div class="stat"><b>테르미니드</b><span>주력 전선</span></div>
       <div class="stat"><b>E-710 · 711</b><span>대표 임무</span></div>
       <div class="stat"><b>성인</b><span>전용 클랜</span></div>
       <div class="stat"><b id="since">2024.11.24~</b><span>이어온 클랜</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="activity">
-  <div class="wrap reveal">
-    <h2>주요 <em>활동</em></h2>
-    <p class="lead">슈퍼 지구의 이름으로, 우리는 이런 일을 합니다.</p>
-    <div class="grid">
-      <div class="card"><h3>🗽 민주주의 전파</h3><p>은하 곳곳에 민주주의를 전파합니다.</p></div>
-      <div class="card"><h3>🚀 식민지 행성 해방</h3><p>적에게 점령된 식민지 행성을 해방합니다.</p></div>
-      <div class="card"><h3>⛏️ 자원 확보 및 추출</h3><p>신입 헬다이버를 위한 샘플을 확보하고, 필요한 자원을 추출합니다. E-710, E-711 석유 추출 임무도 함께합니다.</p></div>
-      <div class="card"><h3>🎓 신입 적응 지원</h3><p>신입 헬다이버가 게임에 적응할 수 있도록 도와줍니다.</p></div>
     </div>
   </div>
 </section>
@@ -199,33 +214,6 @@ img{-webkit-user-drag:none;user-drag:none}
       <button class="clip" data-id="ZoF4WpRwcwY" aria-label="클립 2 재생"><img src="https://i.ytimg.com/vi/ZoF4WpRwcwY/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 02</span></button>
       <button class="clip" data-id="xSbjNmxvrs8" aria-label="클립 3 재생"><img src="https://i.ytimg.com/vi/xSbjNmxvrs8/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 03</span></button>
       <button class="clip" data-id="mS-iz7Qk9fI" aria-label="클립 4 재생"><img src="https://i.ytimg.com/vi/mS-iz7Qk9fI/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 04</span></button>
-    </div>
-  </div>
-</section>
-
-<section id="style">
-  <div class="wrap reveal">
-    <h2>클랜 <em>성향</em></h2>
-    <p class="lead">이기는 것보다 같이 즐기는 것을 먼저 생각합니다.</p>
-    <div class="grid">
-      <div class="card"><h3>🤝 친목과 협동</h3><p>친목과 협동 중심의 분위기입니다.</p></div>
-      <div class="card"><h3>🌱 신입 환영</h3><p>신입 헬다이버를 환영합니다.</p></div>
-      <div class="card"><h3>♾️ 실력·레벨 무관</h3><p>실력과 레벨 제한이 없습니다.</p></div>
-      <div class="card"><h3>👥 다양한 연령대</h3><p>다양한 연령대가 함께 활동합니다.</p></div>
-      <div class="card"><h3>🎮 강요 없는 플레이</h3><p>특정 장비나 플레이 방식을 강요하지 않습니다.</p></div>
-      <div class="card"><h3>⏳ 장기적인 관계</h3><p>오래, 장기적으로 함께할 수 있는 관계를 지향합니다.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="time">
-  <div class="wrap reveal">
-    <h2>주로 <em>활동 시간</em></h2>
-    <p class="lead">직장인도 부담 없이 합류할 수 있는 시간대입니다.</p>
-    <p style="color:var(--mute);font-size:14px;margin:-28px 0 28px">※ 활동 시간대에 함께할 사람이 있을 때도, 없을 때도 있어요.</p>
-    <div class="grid">
-      <div class="card"><h3>🌙 평일</h3><p style="font-size:22px;color:var(--gold);font-weight:800;margin-bottom:4px">밤 9:30 ~ 12:00</p><p>평일 밤에 가장 많이 모여서 함께 출격합니다.</p></div>
-      <div class="card"><h3>🎲 주말</h3><p style="font-size:22px;color:var(--gold);font-weight:800;margin-bottom:4px">시간 랜덤</p><p>주말에는 정해진 시간 없이 자유롭게 모입니다. 디스코드에서 확인하세요.</p></div>
     </div>
   </div>
 </section>
@@ -401,6 +389,43 @@ function typeSection(sec){
   var list=sec.querySelectorAll(TYPE_SEL);
   list.forEach(function(el,idx){ typeEl(el,idx*120); });
 }
+
+/* 스크롤 스토리: 스크롤에 맞춰 글이 흘러가며 소개가 진행됩니다 */
+(function(){
+  var sec=document.getElementById("about"); if(!sec) return;
+  var scenes=[].slice.call(sec.querySelectorAll(".scene")), N=scenes.length;
+  var bar=sec.querySelector(".sprog b"), cnt=sec.querySelector(".cnt"), ticking=false;
+  function clamp(x){ return x<0?0:x>1?1:x; }
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight, r=sec.getBoundingClientRect();
+    var total=r.height-0.4*vh, p=clamp((0.6*vh-r.top)/total);
+    bar.style.width=(p*100)+"%";
+    var cur=Math.min(N-1,Math.floor(p*N));
+    cnt.textContent=("0"+(cur+1)).slice(-2)+" / "+("0"+N).slice(-2);
+    scenes.forEach(function(sc,i){
+      var t=clamp(p*N-i), last=(i===N-1), first=(i===0);
+      var inT=first?1:clamp(t/0.2), outT=last?1:clamp((1-t)/0.15);
+      var a=Math.min(inT,outT);
+      sc.style.opacity=a;
+      sc.style.pointerEvents=a>0.6?"auto":"none";
+      var lines=sc.querySelectorAll(".ln");
+      lines.forEach(function(l,k){
+        var li=first?1:clamp((t-k*0.04)/0.22);
+        var lo=last?1:clamp((1-t+k*0.02)/0.15);
+        var v=Math.min(li,lo);
+        var dir=(lo<li)?-1:1;
+        l.style.opacity=v;
+        l.style.transform="translateY("+((1-v)*36*dir)+"px)";
+        l.style.filter=v<1?"blur("+((1-v)*6)+"px)":"none";
+      });
+    });
+  }
+  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll",req,{passive:true});
+  window.addEventListener("resize",req);
+  update();
+})();
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); typeSection(e.target); } });
 },{threshold:.12});

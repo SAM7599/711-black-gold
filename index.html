@@ -349,8 +349,8 @@ document.querySelectorAll(".clip").forEach(function(b){
         onStateChange:function(e){
           if(e.data===1){
             if(!vbg.classList.contains("playing") && !showT){
-              /* 재생이 완전히 안정된 뒤에 천천히 보여줍니다 (재생 버튼이 비치지 않도록) */
-              showT=setTimeout(function(){ vbg.classList.add("playing"); showT=null; },2200);
+              /* 재생이 시작되고 약 5.5초 뒤에 천천히 보여줍니다 (재생 버튼이 비치지 않도록) */
+              showT=setTimeout(function(){ vbg.classList.add("playing"); showT=null; },5500);
             }
           } else if(e.data===0){ e.target.seekTo(0,true); e.target.playVideo(); }
           else if(e.data===2||e.data===5){ clearTimeout(showT); showT=null; vbg.classList.remove("playing"); e.target.playVideo(); }

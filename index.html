@@ -37,7 +37,7 @@ nav ul a:hover{color:var(--gold)}
 .hero{overflow:hidden;padding:64px 0 90px}
 .vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
 .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
-.vbg iframe{opacity:0;transition:opacity 1.2s ease;position:absolute;top:-160px;left:50%;width:max(100vw,230vh);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
+.vbg iframe{opacity:0;transition:opacity 2.5s ease;position:absolute;top:-160px;left:50%;width:max(100vw,230vh);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
 .vbg.playing iframe{opacity:1}
 .hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
   background:repeating-linear-gradient(-45deg,var(--gold) 0 18px,var(--black) 18px 36px)}
@@ -340,19 +340,27 @@ document.querySelectorAll(".clip").forEach(function(b){
     btn.querySelector(".txt").textContent=muted?"BGM 음소거":"BGM 재생 중";
   }
   window.onYouTubeIframeAPIReady=function(){
-    var HV="3nQ-b04IFIA", vbg=document.querySelector(".vbg");
-    new YT.Player("hero-frame",{
+    var HV="3nQ-b04IFIA", vbg=document.querySelector(".vbg"), hp=null, showT=null;
+    hp=new YT.Player("hero-frame",{
       width:"640",height:"360",videoId:HV,
       playerVars:{autoplay:1,mute:1,controls:0,loop:1,playlist:HV,playsinline:1,rel:0,disablekb:1,iv_load_policy:3,cc_load_policy:0,fs:0,modestbranding:1,origin:location.origin},
       events:{
         onReady:function(e){ e.target.mute(); e.target.playVideo(); },
         onStateChange:function(e){
-          if(e.data===1){ vbg.classList.add("playing"); }
-          else if(e.data===0){ e.target.playVideo(); }
-          else if(e.data===2||e.data===5||e.data===-1){ vbg.classList.remove("playing"); }
+          if(e.data===1){
+            if(!vbg.classList.contains("playing") && !showT){
+              /* 재생이 완전히 안정된 뒤에 천천히 보여줍니다 (재생 버튼이 비치지 않도록) */
+              showT=setTimeout(function(){ vbg.classList.add("playing"); showT=null; },2200);
+            }
+          } else if(e.data===0){ e.target.seekTo(0,true); e.target.playVideo(); }
+          else if(e.data===2||e.data===5){ clearTimeout(showT); showT=null; vbg.classList.remove("playing"); e.target.playVideo(); }
         }
       }
     });
+    /* 영상이 끝나기 직전에 처음으로 되돌려서 끝 화면/재생 버튼이 나오지 않게 합니다 */
+    setInterval(function(){
+      try{ var d=hp.getDuration(), t=hp.getCurrentTime(); if(d>0 && t>d-0.7){ hp.seekTo(0,true); } }catch(e){}
+    },250);
     player=new YT.Player("bgm-frame",{
       width:"200",height:"200",videoId:VID,
       playerVars:{autoplay:1,controls:0,loop:1,playlist:VID,playsinline:1,rel:0,disablekb:1,origin:location.origin},

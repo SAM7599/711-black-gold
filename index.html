@@ -90,6 +90,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .clip:hover img{transform:scale(1.05);opacity:.8}
 .clip .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(245,184,0,.92);color:var(--black);display:grid;place-items:center;font-size:24px;padding-left:4px;box-shadow:0 0 24px rgba(0,0,0,.6)}
 .clip .num{position:absolute;left:12px;bottom:10px;font-size:12px;letter-spacing:.2em;font-weight:800;color:var(--gold);text-shadow:0 0 6px #000}
+.typing::after{content:"▌";color:var(--gold);margin-left:2px;animation:blink .7s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s}
 .reveal.show{opacity:1;transform:none}
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -345,8 +347,31 @@ document.querySelectorAll(".clip").forEach(function(b){
     b.innerHTML="";b.appendChild(f);b.style.cursor="default";
   },{once:true});
 });
+
+/* 스크롤 시 글자 타이핑 효과 */
+var TYPE_SEL=".reveal h2, .reveal .lead, .reveal .card h3, .reveal .card p, .reveal .step h3, .reveal .step p, .reveal .ranks b, .reveal .ranks small";
+function typeEl(el,delay){
+  var nodes=[], w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+  while(w.nextNode()){ if(w.currentNode.nodeValue.trim()){ nodes.push({n:w.currentNode,t:w.currentNode.nodeValue}); } }
+  var total=0; nodes.forEach(function(x){ total+=x.t.length; });
+  if(!total) return;
+  el.style.minHeight=el.offsetHeight+"px";
+  nodes.forEach(function(x){ x.n.nodeValue=""; });
+  var step=Math.max(14,Math.min(45,1200/total)), i=0;
+  function tick(){
+    i++; var rem=i;
+    nodes.forEach(function(x){ var k=Math.min(rem,x.t.length); x.n.nodeValue=x.t.slice(0,k); rem-=k; });
+    if(i<total){ setTimeout(tick,step); } else { el.classList.remove("typing"); el.style.minHeight=""; }
+  }
+  setTimeout(function(){ el.classList.add("typing"); tick(); },delay);
+}
+function typeSection(sec){
+  if(sec.dataset.typed) return; sec.dataset.typed="1";
+  var list=sec.querySelectorAll(TYPE_SEL);
+  list.forEach(function(el,idx){ typeEl(el,idx*120); });
+}
 var io = new IntersectionObserver(function(es){
-  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); } });
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); typeSection(e.target); } });
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
 ["contextmenu","selectstart","dragstart"].forEach(function(t){

@@ -130,6 +130,7 @@ nav ul a.active{color:var(--gold);border-bottom:2px solid var(--gold);padding-bo
 #stats .stats{margin-top:0}
 
 /* 우측 하단 디스코드 버튼 */
+body[data-page="home"] .dfab{display:none}
 .dfab{border-radius:999px;position:fixed;right:18px;bottom:18px;z-index:30;display:flex;align-items:center;gap:8px;padding:13px 22px;background:var(--gold);color:var(--black);font-weight:800;font-size:15px;letter-spacing:.06em;border:2px solid var(--gold);box-shadow:0 6px 24px rgba(0,0,0,.55),0 0 18px rgba(245,184,0,.35);transition:.2s}
 .dfab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.6),0 0 28px rgba(245,184,0,.6)}
 @media(max-width:640px){.dfab{right:10px;bottom:10px;padding:11px 16px;font-size:14px}}
@@ -435,6 +436,7 @@ function typeSection(sec){
     if(names.indexOf(h)<0){ h="home"; }
     document.querySelectorAll(".page").forEach(function(pg){ pg.classList.toggle("active",pg.dataset.page===h); });
     document.querySelectorAll("nav [data-route]").forEach(function(a){ a.classList.toggle("active",a.dataset.route===h && !a.classList.contains("logo")); });
+    document.body.dataset.page=h;
     window.scrollTo(0,0);
   }
   window.addEventListener("hashchange",route);

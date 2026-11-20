@@ -88,6 +88,12 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
 .gal figure{border:1px solid var(--line);border-top:3px solid var(--gold);background:var(--panel);overflow:hidden}
 .gal img{display:block;width:100%;height:auto;transition:.4s}
 .gal figure:hover img{transform:scale(1.03)}
+.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px}
+.clip{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:1px solid var(--line);border-top:3px solid var(--gold);background:#000;cursor:pointer;overflow:hidden;color:#fff}
+.clip img,.clip iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;transition:.4s}
+.clip:hover img{transform:scale(1.05);opacity:.8}
+.clip .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(245,184,0,.92);color:var(--black);display:grid;place-items:center;font-size:24px;padding-left:4px;box-shadow:0 0 24px rgba(0,0,0,.6)}
+.clip .num{position:absolute;left:12px;bottom:10px;font-size:12px;letter-spacing:.2em;font-weight:800;color:var(--gold);text-shadow:0 0 6px #000}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s}
 .reveal.show{opacity:1;transform:none}
 body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -103,6 +109,7 @@ img{-webkit-user-drag:none;user-drag:none}
       <li><a href="#about">소개</a></li>
       <li><a href="#activity">활동</a></li>
       <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#clips">클립</a></li>
       <li><a href="#style">성향</a></li>
       <li><a href="#time">시간</a></li>
       <li><a href="#ranks">직급</a></li>
@@ -165,6 +172,19 @@ img{-webkit-user-drag:none;user-drag:none}
     <div class="gal">
       <figure><img src="images/return1.jpg" alt="미션을 완수하고 귀환하는 클랜원들" loading="lazy"></figure>
       <figure><img src="images/return2.jpg" alt="임무 완수 후 함께 귀환하는 클랜원들" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="clips">
+  <div class="wrap reveal">
+    <h2>황당하고 <em>웃긴 순간</em></h2>
+    <p class="lead">클랜원들과 함께하다 보면 이런 일도 생깁니다. 눌러서 바로 재생해 보세요.</p>
+    <div class="clips">
+      <button class="clip" data-id="IDI5byfrW7U" aria-label="클립 1 재생"><img src="https://i.ytimg.com/vi/IDI5byfrW7U/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 01</span></button>
+      <button class="clip" data-id="ZoF4WpRwcwY" aria-label="클립 2 재생"><img src="https://i.ytimg.com/vi/ZoF4WpRwcwY/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 02</span></button>
+      <button class="clip" data-id="xSbjNmxvrs8" aria-label="클립 3 재생"><img src="https://i.ytimg.com/vi/xSbjNmxvrs8/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 03</span></button>
+      <button class="clip" data-id="mS-iz7Qk9fI" aria-label="클립 4 재생"><img src="https://i.ytimg.com/vi/mS-iz7Qk9fI/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 04</span></button>
     </div>
   </div>
 </section>
@@ -288,6 +308,18 @@ if(MEMBER_COUNT>0){
     })
     .catch(function(){});
 })();
+
+document.querySelectorAll(".clip").forEach(function(b){
+  b.addEventListener("click",function(){
+    var f=document.createElement("iframe");
+    f.src="https://www.youtube.com/embed/"+b.dataset.id+"?autoplay=1&rel=0&playsinline=1";
+    f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen=true;
+    f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+    f.title="클랜 클립";
+    b.innerHTML="";b.appendChild(f);b.style.cursor="default";
+  },{once:true});
+});
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); } });
 },{threshold:.12});

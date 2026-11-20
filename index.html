@@ -128,12 +128,18 @@ img{-webkit-user-drag:none;user-drag:none}
 nav ul a.active{color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:4px}
 #stats{padding:70px 0 20px}
 #stats .stats{margin-top:0}
+
+/* 우측 하단 디스코드 버튼 */
+.dfab{position:fixed;right:18px;bottom:18px;z-index:30;display:flex;align-items:center;gap:8px;padding:13px 22px;background:var(--gold);color:var(--black);font-weight:800;font-size:15px;letter-spacing:.06em;border:2px solid var(--gold);box-shadow:0 6px 24px rgba(0,0,0,.55),0 0 18px rgba(245,184,0,.35);transition:.2s}
+.dfab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.6),0 0 28px rgba(245,184,0,.6)}
+@media(max-width:640px){.dfab{right:10px;bottom:10px;padding:11px 16px;font-size:14px}}
 </style>
 </head>
 <body>
 
 
 <div id="bgm"><button id="bgm-btn" type="button" aria-label="배경음악 켜기/끄기"><span class="ico">🔇</span><span class="eq"><i></i><i></i><i></i></span><span class="info"><b class="ttl">Helldivers 2 - Super Earth Anthem</b><span class="txt">BGM 음소거</span></span></button><input id="bgm-vol" type="range" min="0" max="100" value="60" aria-label="볼륨"></div>
+<a class="dfab" data-discord href="#/join"><span>💬</span>디스코드 합류하기</a>
 <div id="bgm-yt"><div id="bgm-frame"></div></div>
 
 <nav>

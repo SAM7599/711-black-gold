@@ -130,7 +130,6 @@ body.introlock{overflow:hidden}
 <script>
 (function(){
   var el=document.getElementById("intro");
-  try{ if(sessionStorage.getItem("introSeen")){ el.remove(); return; } sessionStorage.setItem("introSeen","1"); }catch(e){}
   document.body.classList.add("introlock");
   function done(){ document.body.classList.remove("introlock"); }
   setTimeout(function(){ done(); if(el.parentNode) el.remove(); },4600);

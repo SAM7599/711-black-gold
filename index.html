@@ -2,7 +2,6 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<script>document.documentElement.className+=" js";</script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -119,43 +118,30 @@ img{-webkit-user-drag:none;user-drag:none}
 @keyframes eq{0%,100%{height:3px}50%{height:14px}}
 #bgm-yt{position:fixed;left:0;bottom:0;width:2px;height:2px;opacity:.01;pointer-events:none;overflow:hidden}
 @media(max-width:640px){#bgm{top:62px;right:8px;padding:6px 10px 6px 8px;max-width:calc(100vw - 16px)}#bgm .ttl{font-size:11px;overflow:hidden;text-overflow:ellipsis}#bgm-vol{width:56px}}
-
-/* 페이지 전환 */
-.js .page{display:none}
-.js .page.active{display:block;animation:pageIn .5s ease both}
-@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.page:not(#page-home)>section:first-child{padding-top:120px}
-nav ul a.active{color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:4px}
-#stats{padding:70px 0 20px}
-#stats .stats{margin-top:0}
-
-/* 우측 하단 디스코드 버튼 */
-body[data-page="home"] .dfab{display:none}
-.dfab{border-radius:999px;position:fixed;right:18px;bottom:18px;z-index:30;display:flex;align-items:center;gap:8px;padding:13px 22px;background:var(--gold);color:var(--black);font-weight:800;font-size:15px;letter-spacing:.06em;border:2px solid var(--gold);box-shadow:0 6px 24px rgba(0,0,0,.55),0 0 18px rgba(245,184,0,.35);transition:.2s}
-.dfab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.6),0 0 28px rgba(245,184,0,.6)}
-@media(max-width:640px){.dfab{right:10px;bottom:10px;padding:11px 16px;font-size:14px}}
 </style>
 </head>
 <body>
 
 
 <div id="bgm"><button id="bgm-btn" type="button" aria-label="배경음악 켜기/끄기"><span class="ico">🔇</span><span class="eq"><i></i><i></i><i></i></span><span class="info"><b class="ttl">Helldivers 2 - Super Earth Anthem</b><span class="txt">BGM 음소거</span></span></button><input id="bgm-vol" type="range" min="0" max="100" value="60" aria-label="볼륨"></div>
-<a class="dfab" data-discord href="#/join"><span>💬</span>디스코드 합류하기</a>
 <div id="bgm-yt"><div id="bgm-frame"></div></div>
 
 <nav>
   <div class="wrap">
-    <a href="#/" class="logo" data-route="home"><img src="logo.png" alt="" style="height:38px;vertical-align:middle;margin-right:8px">711 BLACK GOLD</a>
+    <a href="#top" class="logo"><img src="logo.png" alt="" style="height:38px;vertical-align:middle;margin-right:8px">711 BLACK GOLD</a>
     <ul>
-      <li><a href="#/" data-route="home">홈</a></li>
-      <li><a href="#/about" data-route="about">클랜 알아보기</a></li>
-      <li><a href="#/clips" data-route="clips">클립</a></li>
-      <li><a href="#/join" data-route="join">가입 안내</a></li>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#activity">활동</a></li>
+      <li><a href="#clips">클립</a></li>
+      <li><a href="#style">성향</a></li>
+      <li><a href="#time">시간</a></li>
+      <li><a href="#ranks">직급</a></li>
+      <li><a href="#join">가입</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
-<main class="page" id="page-home" data-page="home">
 <header class="hero" id="top">
   <div class="vbg"><iframe src="https://www.youtube.com/embed/3nQ-b04IFIA?autoplay=1&mute=1&loop=1&playlist=3nQ-b04IFIA&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3&cc_load_policy=0&fs=0" title="클랜 소개 영상" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true"></iframe></div>
   <div class="wrap">
@@ -165,32 +151,12 @@ body[data-page="home"] .dfab{display:none}
     <h1 class="sr">711 BLACK GOLD</h1>
     <p class="sub">벌레는 쓸어버리고, 검은 황금은 뽑아낸다.<br>테르미니드 소탕과 E-710 · E-711 석유 추출 전문 클랜.<br>오래 함께할 헬다이버를 모집합니다.</p>
     <div class="btns">
-      <a class="btn fill" data-discord href="#/join">디스코드 합류하기</a>
-      <a class="btn" href="#/about">클랜 알아보기</a>
+      <a class="btn fill" data-discord href="#join">디스코드 합류하기</a>
+      <a class="btn" href="#about">클랜 알아보기</a>
     </div>
   </div>
 </header>
-<section id="stats">
-  <div class="wrap reveal">
-    <div class="stats">
-      <div class="stat"><b id="mcount">최대 50명</b><span id="mlabel">클랜 정원</span></div>
-      <div class="stat"><b>테르미니드</b><span>주력 전선</span></div>
-      <div class="stat"><b>E-710 · 711</b><span>대표 임무</span></div>
-      <div class="stat"><b>성인</b><span>전용 클랜</span></div>
-      <div class="stat"><b id="since">2024.11.24~</b><span>이어온 클랜</span></div>
-    </div>
-  </div>
-</section>
-<section class="cta">
-  <div class="wrap reveal">
-    <h2>검은 황금은 <em>우리가 지킨다</em></h2>
-    <p class="lead">지금 합류하세요, 헬다이버.</p>
-    <a class="btn fill" data-discord href="#/join">디스코드 합류하기</a>
-  </div>
-</section>
-</main>
 
-<main class="page" id="page-about" data-page="about">
 <section id="about">
   <div class="wrap reveal">
     <h2>우리는 <em>이런 클랜</em>입니다</h2>
@@ -201,8 +167,16 @@ body[data-page="home"] .dfab{display:none}
       <div class="card"><h3>🍺 성인 커뮤니티</h3><p>매너 있는 성인들의 모임. 과한 간섭 없이 즐겁게, 하지만 임무에선 진지하게.</p></div>
       <div class="card"><h3>🎖️ 최대 50명</h3><p>정원 최대 50명. 서로 닉네임이 익숙한 아담한 분위기를 지향합니다.</p></div>
     </div>
+    <div class="stats">
+      <div class="stat"><b id="mcount">최대 50명</b><span id="mlabel">클랜 정원</span></div>
+      <div class="stat"><b>테르미니드</b><span>주력 전선</span></div>
+      <div class="stat"><b>E-710 · 711</b><span>대표 임무</span></div>
+      <div class="stat"><b>성인</b><span>전용 클랜</span></div>
+      <div class="stat"><b id="since">2024.11.24~</b><span>이어온 클랜</span></div>
+    </div>
   </div>
 </section>
+
 <section id="activity">
   <div class="wrap reveal">
     <h2>주요 <em>활동</em></h2>
@@ -215,6 +189,20 @@ body[data-page="home"] .dfab{display:none}
     </div>
   </div>
 </section>
+
+<section id="clips">
+  <div class="wrap reveal">
+    <h2>황당하고 <em>웃긴 순간</em></h2>
+    <p class="lead">클랜원들과 함께하다 보면 이런 일도 생깁니다. 눌러서 바로 재생해 보세요.</p>
+    <div class="clips">
+      <button class="clip" data-id="IDI5byfrW7U" aria-label="클립 1 재생"><img src="https://i.ytimg.com/vi/IDI5byfrW7U/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 01</span></button>
+      <button class="clip" data-id="ZoF4WpRwcwY" aria-label="클립 2 재생"><img src="https://i.ytimg.com/vi/ZoF4WpRwcwY/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 02</span></button>
+      <button class="clip" data-id="xSbjNmxvrs8" aria-label="클립 3 재생"><img src="https://i.ytimg.com/vi/xSbjNmxvrs8/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 03</span></button>
+      <button class="clip" data-id="mS-iz7Qk9fI" aria-label="클립 4 재생"><img src="https://i.ytimg.com/vi/mS-iz7Qk9fI/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 04</span></button>
+    </div>
+  </div>
+</section>
+
 <section id="style">
   <div class="wrap reveal">
     <h2>클랜 <em>성향</em></h2>
@@ -229,6 +217,7 @@ body[data-page="home"] .dfab{display:none}
     </div>
   </div>
 </section>
+
 <section id="time">
   <div class="wrap reveal">
     <h2>주로 <em>활동 시간</em></h2>
@@ -240,6 +229,7 @@ body[data-page="home"] .dfab{display:none}
     </div>
   </div>
 </section>
+
 <section id="ranks">
   <div class="wrap reveal">
     <h2>클랜 <em>직급 체계</em></h2>
@@ -249,24 +239,7 @@ body[data-page="home"] .dfab{display:none}
     </ol>
   </div>
 </section>
-</main>
 
-<main class="page" id="page-clips" data-page="clips">
-<section id="clips">
-  <div class="wrap reveal">
-    <h2>황당하고 <em>웃긴 순간</em></h2>
-    <p class="lead">클랜원들과 함께하다 보면 이런 일도 생깁니다. 눌러서 바로 재생해 보세요.</p>
-    <div class="clips">
-      <button class="clip" data-id="IDI5byfrW7U" aria-label="클립 1 재생"><img src="https://i.ytimg.com/vi/IDI5byfrW7U/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 01</span></button>
-      <button class="clip" data-id="ZoF4WpRwcwY" aria-label="클립 2 재생"><img src="https://i.ytimg.com/vi/ZoF4WpRwcwY/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 02</span></button>
-      <button class="clip" data-id="xSbjNmxvrs8" aria-label="클립 3 재생"><img src="https://i.ytimg.com/vi/xSbjNmxvrs8/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 03</span></button>
-      <button class="clip" data-id="mS-iz7Qk9fI" aria-label="클립 4 재생"><img src="https://i.ytimg.com/vi/mS-iz7Qk9fI/hqdefault.jpg" alt="" loading="lazy"><span class="play">▶</span><span class="num">CLIP 04</span></button>
-    </div>
-  </div>
-</section>
-</main>
-
-<main class="page" id="page-join" data-page="join">
 <section id="join">
   <div class="wrap reveal">
     <h2>가입 <em>방법</em></h2>
@@ -292,6 +265,7 @@ body[data-page="home"] .dfab{display:none}
     </div>
   </div>
 </section>
+
 <section id="faq">
   <div class="wrap reveal">
     <h2>자주 묻는 <em>질문</em></h2>
@@ -304,14 +278,14 @@ body[data-page="home"] .dfab{display:none}
     <details><summary>미성년자도 되나요?</summary><p>성인 전용 클랜이라 가입할 수 없습니다.</p></details>
   </div>
 </section>
+
 <section class="cta">
   <div class="wrap reveal">
     <h2>검은 황금은 <em>우리가 지킨다</em></h2>
     <p class="lead">지금 합류하세요, 헬다이버.</p>
-    <a class="btn fill" data-discord href="#/join">디스코드 합류하기</a>
+    <a class="btn fill" data-discord href="#join">디스코드 합류하기</a>
   </div>
 </section>
-</main>
 
 <footer>
   <div class="wrap">
@@ -427,21 +401,6 @@ function typeSection(sec){
   var list=sec.querySelectorAll(TYPE_SEL);
   list.forEach(function(el,idx){ typeEl(el,idx*120); });
 }
-
-/* 페이지 이동 (주소 뒤 #/about 등) */
-(function(){
-  var names=["home","about","clips","join"];
-  function route(){
-    var h=location.hash.replace(/^#\/?/,"")||"home";
-    if(names.indexOf(h)<0){ h="home"; }
-    document.querySelectorAll(".page").forEach(function(pg){ pg.classList.toggle("active",pg.dataset.page===h); });
-    document.querySelectorAll("nav [data-route]").forEach(function(a){ a.classList.toggle("active",a.dataset.route===h && !a.classList.contains("logo")); });
-    document.body.dataset.page=h;
-    window.scrollTo(0,0);
-  }
-  window.addEventListener("hashchange",route);
-  route();
-})();
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); typeSection(e.target); } });
 },{threshold:.12});

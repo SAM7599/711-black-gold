@@ -390,41 +390,48 @@ function typeSection(sec){
   list.forEach(function(el,idx){ typeEl(el,idx*120); });
 }
 
-/* 스크롤 스토리: 스크롤에 맞춰 글이 흘러가며 소개가 진행됩니다 */
+/* 스크롤 스토리: 스크롤에 맞춰 글이 부드럽게 흘러가며 소개가 진행됩니다 */
 (function(){
   var sec=document.getElementById("about"); if(!sec) return;
   var scenes=[].slice.call(sec.querySelectorAll(".scene")), N=scenes.length;
-  var bar=sec.querySelector(".sprog b"), cnt=sec.querySelector(".cnt"), ticking=false;
+  var bar=sec.querySelector(".sprog b"), cnt=sec.querySelector(".cnt");
+  var target=0, cur=0, raf=null;
   function clamp(x){ return x<0?0:x>1?1:x; }
-  function update(){
-    ticking=false;
+  function ease(x){ return x*x*(3-2*x); }
+  function readTarget(){
     var vh=window.innerHeight, r=sec.getBoundingClientRect();
-    var total=r.height-0.4*vh, p=clamp((0.6*vh-r.top)/total);
+    target=clamp((0.6*vh-r.top)/(r.height-0.4*vh));
+  }
+  function render(p){
     bar.style.width=(p*100)+"%";
-    var cur=Math.min(N-1,Math.floor(p*N));
-    cnt.textContent=("0"+(cur+1)).slice(-2)+" / "+("0"+N).slice(-2);
+    var c=Math.min(N-1,Math.floor(p*N));
+    cnt.textContent=("0"+(c+1)).slice(-2)+" / "+("0"+N).slice(-2);
     scenes.forEach(function(sc,i){
-      var t=clamp(p*N-i), last=(i===N-1), first=(i===0);
-      var inT=first?1:clamp(t/0.2), outT=last?1:clamp((1-t)/0.15);
-      var a=Math.min(inT,outT);
-      sc.style.opacity=a;
-      sc.style.pointerEvents=a>0.6?"auto":"none";
-      var lines=sc.querySelectorAll(".ln");
-      lines.forEach(function(l,k){
-        var li=first?1:clamp((t-k*0.04)/0.22);
-        var lo=last?1:clamp((1-t+k*0.02)/0.15);
-        var v=Math.min(li,lo);
-        var dir=(lo<li)?-1:1;
+      var t=clamp(p*N-i), first=(i===0), last=(i===N-1);
+      var any=0;
+      sc.querySelectorAll(".ln").forEach(function(l,k){
+        var li=first?1:ease(clamp((t-k*0.05)/0.2));
+        var lo=last?1:ease(clamp((1-t-k*0.015)/0.14));
+        var v=Math.min(li,lo); if(v>any) any=v;
         l.style.opacity=v;
-        l.style.transform="translateY("+((1-v)*36*dir)+"px)";
-        l.style.filter=v<1?"blur("+((1-v)*6)+"px)":"none";
+        l.style.transform="translateY("+(((1-li)-(1-lo))*28)+"px)";
+        l.style.filter=v<0.98?"blur("+((1-v)*4)+"px)":"none";
       });
+      sc.style.opacity=any>0.01?1:0;
+      sc.style.pointerEvents=any>0.6?"auto":"none";
     });
   }
-  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
-  window.addEventListener("scroll",req,{passive:true});
-  window.addEventListener("resize",req);
-  update();
+  function loop(){
+    raf=null; readTarget();
+    var d=target-cur;
+    if(Math.abs(d)<0.0003){ cur=target; render(cur); return; }
+    cur+=d*0.14; render(cur);
+    raf=requestAnimationFrame(loop);
+  }
+  function kick(){ if(!raf){ raf=requestAnimationFrame(loop); } }
+  window.addEventListener("scroll",kick,{passive:true});
+  window.addEventListener("resize",kick);
+  readTarget(); cur=target; render(cur);
 })();
 
 /* 로고 클릭 시 맨 위로 */

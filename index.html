@@ -426,6 +426,11 @@ function typeSection(sec){
   window.addEventListener("resize",req);
   update();
 })();
+
+/* 로고 클릭 시 맨 위로 */
+document.querySelector("nav .logo").addEventListener("click",function(e){
+  e.preventDefault(); window.scrollTo({top:0,behavior:"smooth"});
+});
 var io = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("show"); typeSection(e.target); } });
 },{threshold:.12});

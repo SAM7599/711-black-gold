@@ -465,7 +465,7 @@ function typeSection(sec){
     var fr=document.querySelector(".vbg iframe"); if(!fr) return;
     var w=hero.clientWidth, h=hero.clientHeight;
     var lg=document.querySelector(".herologo"), hr=hero.getBoundingClientRect(), lr=lg.getBoundingClientRect();
-    var D=110;                                  /* 영상 가운데를 로고 중심보다 아래로 내리는 양 */
+    var D=0;                                    /* 영상 가운데를 로고 중심보다 아래로 내리는 양 */
     var cy=lr.top+lr.height/2-hr.top+D;         /* 영상 가운데 위치(재생 버튼은 로고에 가려짐) */
     /* 위 15%(제목)와 아래 20%(자막)가 화면 밖으로 잘리도록 크기 결정 */
     var vh=Math.max((h-cy)/0.3, cy/0.35, 2*cy, 2*(h-cy), w*9/16);

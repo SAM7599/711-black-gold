@@ -154,7 +154,9 @@ img{-webkit-user-drag:none;user-drag:none}
 #dmodal h3{color:var(--gold);font-size:20px;margin-bottom:6px}
 #dmodal .sub{color:var(--mute);font-size:13px;margin-bottom:20px}
 #dmodal ul{list-style:none;text-align:left;margin-bottom:24px}
-#dmodal li{padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);font-size:14px;line-height:1.7}
+#dmodal li{position:relative;padding:14px 16px 14px 42px;margin-bottom:12px;border:1px solid var(--gold);border-left-width:4px;background:rgba(245,184,0,.1);box-shadow:0 0 14px rgba(245,184,0,.12);font-size:14px;line-height:1.7;color:#f2f2f2}
+#dmodal li::before{content:"!";position:absolute;left:12px;top:14px;width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;background:var(--gold);color:var(--black);font-weight:900;font-size:13px}
+#dmodal li b{color:var(--gold)}
 #dmodal .acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 #dmodal .btn{padding:12px 22px;font-size:14px}
 </style>
@@ -306,6 +308,7 @@ img{-webkit-user-drag:none;user-drag:none}
     <ul>
       <li>가입 신청 후 승인은 보통 <b>며칠 이내</b>에 진행됩니다. 승인 여부를 확인하실 생각이 없다면 <b>가입 신청을 하지 말아주세요.</b></li>
       <li>간을 보거나 염탐할 목적으로 들어오시는 거라면 <b>신청하지 말아주세요.</b> 함께 활동할 마음이 있는 분만 환영합니다.</li>
+      <li>저희 클랜은 <b>모집 서버가 아닙니다.</b> 가입만 해두고 활동하지 않거나 다른 서버를 주로 오가며 활동하실 분은 신청하지 말아주세요.</li>
     </ul>
     <div class="acts">
       <a class="btn fill" id="dm-go" href="#" target="_blank" rel="noopener">확인했습니다, 디스코드로 이동</a>

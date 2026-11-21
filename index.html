@@ -37,6 +37,7 @@ nav ul a:hover{color:var(--gold)}
 .hero{overflow:hidden;min-height:0;padding:76px 0 64px}
 .vbg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
 .vbg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55),rgba(11,11,12,.75))}
+.vbg iframe{transition:opacity .3s ease}
 .vbg.playing iframe{opacity:1}
 .vbg iframe{opacity:0;position:absolute;top:-160px;left:50%;width:max(100vw,2100px);height:calc(100% + 320px);transform:translateX(-50%);border:0;pointer-events:none}
 .hero::after{z-index:2;content:"";position:absolute;left:0;right:0;bottom:0;height:14px;
@@ -348,9 +349,9 @@ document.querySelectorAll(".clip").forEach(function(b){
         onReady:function(e){ e.target.mute(); e.target.playVideo(); if(window.fillHero) window.fillHero(); },
         onStateChange:function(e){
           /* 재생 중일 때만 화면에 보여서 가운데 재생 버튼이 안 보이게 합니다 */
-          if(e.data===1){ vbg.classList.add("playing"); }
+          if(e.data===1){ if(!vbg._t){ vbg._t=setTimeout(function(){ vbg.classList.add("playing"); vbg._t=null; },1200); } } /* 재생 시작 직후 잠깐 나오는 재생 버튼이 지나간 뒤에 보여줌 */
           else if(e.data===0){ e.target.seekTo(0,true); e.target.playVideo(); }
-          else { vbg.classList.remove("playing"); if(e.data===2||e.data===5){ e.target.playVideo(); } }
+          else { clearTimeout(vbg._t); vbg._t=null; vbg.classList.remove("playing"); if(e.data===2||e.data===5){ e.target.playVideo(); } }
         }
       }
     });

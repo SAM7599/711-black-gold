@@ -441,10 +441,10 @@ function typeSection(sec){
   if(!hero||!fr) return;
   function fill(){
     var w=hero.clientWidth, h=hero.clientHeight;
-    var vh=Math.max(h+320, w*9/16);
+    var vh=Math.max(h+480, w*9/16);
     fr.style.height=vh+"px";
     fr.style.width=(vh*16/9)+"px";
-    fr.style.top=((h-vh)/2)+"px";
+    fr.style.top=Math.min(0,(h-vh)/2+120)+"px"; /* +120 = 영상을 아래로 내림 */
   }
   fill();
   window.addEventListener("resize",fill);

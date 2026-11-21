@@ -349,7 +349,7 @@ document.querySelectorAll(".clip").forEach(function(b){
         onReady:function(e){ e.target.mute(); e.target.playVideo(); if(window.fillHero) window.fillHero(); },
         onStateChange:function(e){
           /* 재생 중일 때만 화면에 보여서 가운데 재생 버튼이 안 보이게 합니다 */
-          if(e.data===1){ if(!vbg._t){ vbg._t=setTimeout(function(){ vbg.classList.add("playing"); vbg._t=null; },1200); } } /* 재생 시작 직후 잠깐 나오는 재생 버튼이 지나간 뒤에 보여줌 */
+          if(e.data===1){ if(!vbg._t){ vbg._t=setTimeout(function(){ vbg.classList.add("playing"); vbg._t=null; },0); } } /* 재생 시작 직후 잠깐 나오는 재생 버튼이 지나간 뒤에 보여줌 */
           else if(e.data===0){ e.target.seekTo(0,true); e.target.playVideo(); }
           else { clearTimeout(vbg._t); vbg._t=null; vbg.classList.remove("playing"); if(e.data===2||e.data===5){ e.target.playVideo(); } }
         }
@@ -461,15 +461,20 @@ function typeSection(sec){
   function fill(){
     var fr=document.querySelector(".vbg iframe"); if(!fr) return;
     var w=hero.clientWidth, h=hero.clientHeight;
-    var vh=Math.max(h+480, w*9/16);
+    var lg0=document.querySelector(".herologo").getBoundingClientRect(), hr0=hero.getBoundingClientRect(), c0=lg0.top+lg0.height/2-hr0.top;
+    var vh=Math.max(2*Math.max(c0,h-c0)+40, w*9/16);
     fr.style.height=vh+"px";
     fr.style.width=(vh*16/9)+"px";
-    fr.style.top=Math.min(0,(h-vh)/2+120)+"px"; /* +120 = 영상을 아래로 내림 */
+    /* 영상 가운데(재생 버튼 자리)가 로고 한가운데 오도록 맞춤 */
+    var lg=document.querySelector(".herologo"), hr=hero.getBoundingClientRect(), lr=lg.getBoundingClientRect();
+    var cy=lr.top+lr.height/2-hr.top;
+    fr.style.top=(cy-vh/2)+"px";
   }
   window.fillHero=fill;
   fill();
   window.addEventListener("resize",fill);
   window.addEventListener("load",fill);
+  var _lg=document.querySelector(".herologo"); if(_lg&&!_lg.complete){ _lg.addEventListener("load",fill); }
   if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(fill); }
 })();
 /* 로고 클릭 시 맨 위로 */
